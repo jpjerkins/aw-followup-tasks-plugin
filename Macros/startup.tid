@@ -1,0 +1,20 @@
+created: 20240425015307347
+creator: jpjerkins
+modified: 20240425015307347
+modifier: jpjerkins
+tags: $:/tags/StartupAction/PostRender
+title: $:/plugins/pjerkins/aw-follow-tasks/Macros/StartUp
+
+<$reveal
+ state="$:/temp/TaskFilter!!followup-filter-flag"
+ text="Follow-up Tasks Filter Added"
+ type=nomatch>
+    <$action-setfield
+    $tiddler="$:/temp/TaskFilter"
+    $field="text"
+    $value=`${[{$:/temp/TaskFilter!!text}]}$!tag[FollowUpItem]` />
+    <$action-setfield
+    $tiddler="$:/temp/TaskFilter"
+    $field="followup-filter-flag"
+    $value="Follow-up Tasks Filter Added" />
+</$reveal>

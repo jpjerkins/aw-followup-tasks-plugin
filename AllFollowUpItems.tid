@@ -1,0 +1,41 @@
+created: 20240425015307347
+creator: jpjerkins
+modified: 20240425015307347
+modifier: jpjerkins
+tags: 
+title: $:/plugins/pjerkins/aw-followup-tasks/AllFollowUpItems
+
+\import [all[shadows]prefix:title[$:/plugins/pjerkins/aw-followup-tasks/Macros/FollowUp]]
+
+Move To: <<followUpFolderBoundSelect target-folder>>
+
+<$let
+ currentTiddler=<<qualify "target-folder">>
+ targetFolder={{!!text}}>
+
+    !! Follow-up Folders
+    <$list filter="[list[$:/plugins/pjerkins/aw-followup-tasks/FollowUpFolders]]" variable=folder>
+        <$let
+         targetFolderTiddler=<<qualify 'target-folder'>>>
+            <$list filter="[tag[FollowUpItem]field:follow-up-folder<folder>!tag[Done]] +[first[1]]">
+        
+                !!! <<folder>>
+        
+                <p>
+                    <$button>
+                        <$list filter="[tag[FollowUpItem]field:follow-up-folder<folder>!tag[Done]]">
+                            <$action-setfield follow-up-folder=<<targetFolder>>/>
+                        </$list>
+                        Move all
+                    </$button>
+                </p>
+        
+                <$list
+                template="$:/plugins/pjerkins/aw-followup-tasks/ViewTemplates/FollowUpTaskTemplate"
+                filter="[tag[FollowUpItem]field:follow-up-folder<folder>!tag[Done]]"/>
+        
+            </$list>
+        </$let>
+    </$list>
+
+</$let>
