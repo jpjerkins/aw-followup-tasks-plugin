@@ -15,3 +15,4 @@ todo-action-box-state:
     </span>
 </$list>
 {{||$:/plugins/pjerkins/aw-basic-tasks/ViewTemplates/TaskActionBar}}
+<br/>
