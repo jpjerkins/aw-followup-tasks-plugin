@@ -1,0 +1,7 @@
+created: 20240429003122178
+modified: 20240429003242295
+tags: DefaultTaskExclusionFilter FollowupTasks
+title: $:/plugins/pjerkins/aw-followup-tasks/Macros/NotFollowupFilter
+type: text/vnd.tiddlywiki
+
+!tag[FollowUpItem]
