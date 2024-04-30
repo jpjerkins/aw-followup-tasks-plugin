@@ -18,3 +18,26 @@ title: $:/plugins/pjerkins/aw-follow-tasks/Macros/StartUp
     $field="followup-filter-flag"
     $value="Follow-up Tasks Filter Added" />
 </$reveal>
+
+<$reveal
+ state="$:/temp/FollowUpOtherExclusionFilters!!followup-filter-flag"
+ text="Follow Up Tasks Other Exclusion Filters Added"
+ type=nomatch>
+    <$action-setfield
+    $tiddler="$:/temp/FollowUpOtherExclusionFilters"
+    $field="text"
+    $value="" />
+    <$list filter="[all[shadows+tiddlers]tag[DefaultTaskExclusionFilter]!tag[FollowUpTasks]]" variable="currentExclusionFilterSource">
+        <$vars currentExclusionFilter={{{ [<currentExclusionFilterSource>get[text]] }}}>
+            <$action-setfield
+            $tiddler="$:/temp/FollowUpOtherExclusionFilters"
+            $field="text"
+            $value=`${[{$:/temp/FollowUpOtherExclusionFilters!!text}]}$$(currentExclusionFilter)$` />
+        </$vars>
+    </$list>
+    <$action-setfield
+    $tiddler="$:/temp/FollowUpOtherExclusionFilters"
+    $field="followup-filter-flag"
+    $value="Follow Up Tasks Other Exclusion Filters Added" />
+</$reveal>
+Tasks
