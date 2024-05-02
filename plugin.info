@@ -1,12 +1,12 @@
 {
-    "created": "20240425015307347",
-    "title": "$:/plugins/pjerkins/aw-followup-tasks",
-    "modified": "20240425015307347",
-    "core.version": ">=5.3.3",
-    "description": "ArchWork Follow-up Tasks plugin",
-    "plugin-type": "plugin",
-    "version": "0.0.07",
-    "name": "aw-followup-tasks",
-    "dependents": "[[$:/plugins/pjerkins/aw-followup-tasks]]",
-    "list": "readme"
+  "created": "20240425015307347",
+  "title": "$:/plugins/pjerkins/aw-followup-tasks",
+  "modified": "20240425015307347",
+  "core.version": ">=5.3.3",
+  "description": "ArchWork Follow-up Tasks plugin",
+  "plugin-type": "plugin",
+  "version": "0.0.09",
+  "name": "aw-followup-tasks",
+  "dependents": "[[$:/plugins/pjerkins/aw-followup-tasks]]",
+  "list": "readme"
 }
