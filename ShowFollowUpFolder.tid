@@ -14,5 +14,5 @@ Follow-up Folder: <<followUpFolderBoundSelect selected-folder>>
  selectedFolder={{!!text}}>
     <$list
      template="$:/plugins/pjerkins/aw-followup-tasks/ViewTemplates/FollowUpTaskTemplate"
-     filter="[tag[FollowUpItem]field:follow-up-folder<selectedFolder>!tag[Done]]"/>
+     filter=`[tag[FollowUpItem]field:follow-up-folder<selectedFolder>${[{$:/temp/FollowUpOtherExclusionFilters!!text}]}$]` />
 </$let>
