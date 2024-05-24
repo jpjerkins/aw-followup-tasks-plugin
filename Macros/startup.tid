@@ -3,7 +3,7 @@ creator: jpjerkins
 modified: 20240425015307347
 modifier: jpjerkins
 tags: $:/tags/StartupAction/PostRender
-title: $:/plugins/pjerkins/aw-follow-tasks/Macros/StartUp
+title: $:/plugins/pjerkins/aw-followup-tasks/Macros/StartUp
 
 <$reveal
  state="$:/temp/TaskFilter!!followup-filter-flag"
