@@ -7,24 +7,35 @@ title: $:/plugins/pjerkins/aw-followup-tasks/AllFollowUpItems
 
 \import [all[shadows]prefix:title[$:/plugins/pjerkins/aw-followup-tasks/Macros/FollowUp]]
 
-Move To: <<followUpFolderBoundSelect target-folder>>
+Move To:
+<$macrocall
+ $name="edit-date"
+ id=<<currentTiddler>>
+ confirm="no"
+ tiddler=<<qualify "target-date">>
+ format="YYYY-0MM-0DD"
+ field="text"
+ inputActions=<<followUpFolderActions>>
+/>
 
 <$let
- currentTiddler=<<qualify "target-folder">>
- targetFolder={{!!text}}>
+ currentTiddler=<<qualify "target-date">>
+ targetDate={{!!text}}>
 
-    !! Follow-up Folders
-    <$list filter="[list[$:/plugins/pjerkins/aw-followup-tasks/FollowUpFolders]]" variable=folder>
-        <$let
-         targetFolderTiddler=<<qualify 'target-folder'>>>
-            <$list filter="[tag[FollowUpItem]field:follow-up-folder<folder>!tag[Done]] +[first[1]]">
+    <% if [tag[FollowUpItem]has[follow-up-folder]!tag[Done]] %>
+
+        !! Follow-up Folders
+
+        <$list filter="[list[$:/plugins/pjerkins/aw-followup-tasks/FollowUpFolders]]" variable=folder>
+            <$list filter="[tag[FollowUpItem]has[follow-up-folder]field:follow-up-folder<folder>!tag[Done]] +[first[1]]">
         
                 !!! <<folder>>
-        
+
                 <p>
                     <$button>
-                        <$list filter="[tag[FollowUpItem]field:follow-up-folder<folder>!tag[Done]]">
-                            <$action-setfield follow-up-folder=<<targetFolder>>/>
+                        <$list filter="[tag[FollowUpItem]has[follow-up-folder]field:follow-up-folder<folder>!tag[Done]]">
+                            <$action-setfield follow-up-date=<<targetDate>>/>
+                            <$action-deletefield $field="follow-up-folder"/>
                         </$list>
                         Move all
                     </$button>
@@ -32,9 +43,31 @@ Move To: <<followUpFolderBoundSelect target-folder>>
         
                 <$list
                 template="$:/plugins/pjerkins/aw-followup-tasks/ViewTemplates/FollowUpTaskTemplate"
-                filter="[tag[FollowUpItem]field:follow-up-folder<folder>!tag[Done]]"/>
+                filter="[tag[FollowUpItem]has[follow-up-folder]field:follow-up-folder<folder>!tag[Done]]"/>
         
             </$list>
+        </$list>
+    <% endif %>
+
+    !! Follow-up Dates
+    <$list filter="[tag[FollowUpItem]get[follow-up-date]sort[]unique[]]" variable=currentDate>
+        <$let currentDateFancy={{{ [<currentDate>addsuffix[T12:00:00]parsedate[ddd, MM/0DD]] }}} >
+        
+            !!! <<currentDateFancy>>
+    
+            <p>
+                <$button>
+                    <$list filter="[tag[FollowUpItem]field:follow-up-date<currentDate>!tag[Done]]">
+                        <$action-setfield follow-up-date=<<targetDate>>/>
+                    </$list>
+                    Move all
+                </$button>
+            </p>
+    
+            <$list
+            template="$:/plugins/pjerkins/aw-followup-tasks/ViewTemplates/FollowUpTaskTemplate"
+            filter="[tag[FollowUpItem]field:follow-up-date<currentDate>!tag[Done]]"/>
+        
         </$let>
     </$list>
 

@@ -10,9 +10,11 @@ todo-action-box-state:
 
 {{||$:/plugins/pjerkins/aw-basic-tasks/ViewTemplates/TaskActionBar3Dot}}<$link />
 <$list filter="[all[current]tag[FollowUpItem]]" variable="_">
-    <span style="color: gray;">
-        <i>({{!!follow-up-folder}})</i>
-    </span>
+    <$let fancyFollowUpDate={{{ [is[current]get[follow-up-date]addsuffix[T12:00:00]parsedate[ddd, MM/0DD]] }}} >
+        <span style="color: gray;">
+            <i>(<<fancyFollowUpDate>>)</i>
+        </span>
+    </$let>
 </$list>
 {{||$:/plugins/pjerkins/aw-basic-tasks/ViewTemplates/TaskActionBar}}
 <br/>

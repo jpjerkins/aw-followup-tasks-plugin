@@ -12,11 +12,29 @@ title: $:/plugins/pjerkins/aw-followup-tasks/ViewTemplates/FollowUpFolderActionB
 \end
 
 |
-<<followUpFolderActionsSelect follow-up-folder '<<followUpFolderActions>>' >>
+<% if [is[current]has[follow-up-date]] %>
+<$let followUpDatePretty={{{ [{!!follow-up-date}addsuffix[T12:00:00]parsedate[ddd, MM/0DD]] }}} >
+<<followUpDatePretty>>
+</$let>
+<% else %>
+Follow up:
+<% endif %>
+<$macrocall
+ $name="edit-date"
+ id=<<currentTiddler>>
+ type="button"
+ confirm="no"
+ tiddler=<<currentTiddler>>
+ format="YYYY-0MM-0DD"
+ field="follow-up-date"
+ inputActions=<<followUpFolderActions>>
+/>
+
 <% if [all[current]tag[FollowUpItem]] %>
     <$button>
         <$action-listops $tags="+[remove[FollowUpItem]]"/>
         <$action-deletefield follow-up-folder />
+        <$action-deletefield follow-up-date />
         <<closeActionBarActions>>
         Clear
     </$button>

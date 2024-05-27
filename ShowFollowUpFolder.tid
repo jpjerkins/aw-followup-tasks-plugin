@@ -7,12 +7,14 @@ title: $:/plugins/pjerkins/aw-followup-tasks/ShowFollowUpFolder
 
 \import [all[shadows]prefix:title[$:/plugins/pjerkins/aw-followup-tasks/Macros/FollowUp]]
 
-Follow-up Folder: <<followUpFolderBoundSelect selected-folder>>
+[[All Follow-up Items|$:/plugins/pjerkins/aw-followup-tasks/AllFollowUpItems]]
 
 <$let
  currentTiddler=<<qualify "selected-folder">>
- selectedFolder={{!!text}}>
+ selectedFolder={{!!text}}
+ todayDate=<<now YYYY-0MM-0DD>>
+ followUpFilter="[get[follow-up-date]compare:string:lteq<todayDate>]" >
     <$list
      template="$:/plugins/pjerkins/aw-followup-tasks/ViewTemplates/FollowUpTaskTemplate"
-     filter=`[tag[FollowUpItem]field:follow-up-folder<selectedFolder>${[{$:/temp/FollowUpOtherExclusionFilters!!text}]}$]` />
+     filter=`[tag[FollowUpItem]filter<followUpFilter>${[{$:/temp/FollowUpOtherExclusionFilters!!text}]}$]` />
 </$let>
