@@ -19,9 +19,13 @@ title: $:/plugins/pjerkins/aw-followup-tasks/ViewTemplates/FollowUpFolderActionB
 <% else %>
 Follow up:
 <% endif %>
-<$edit-text
- tag="input"
- type="date"
+<$macrocall
+ $name="edit-date"
+ id=<<currentTiddler>>
+ type="button"
+ confirm="no"
+ tiddler=<<currentTiddler>>
+ format="YYYY-0MM-0DD"
  field="follow-up-date"
  class="phil-editdate-button"
  inputActions=<<followUpFolderActions>>
